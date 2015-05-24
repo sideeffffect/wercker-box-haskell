@@ -1,5 +1,5 @@
 name: haskell
-version: 0.0.1
+version: 2.0.0
 inherits: ondrapelech/ubuntu-15.04@0.0.7
 description: wercker box for the latest GHC and cabal-install
 type: main
