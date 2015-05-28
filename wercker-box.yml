@@ -1,5 +1,5 @@
 name: haskell
-version: 2.0.1
+version: 2.0.2
 inherits: davedoesdev/ubuntu-14.10@0.0.2
 description: wercker box for the latest GHC and cabal-install
 type: main
@@ -47,13 +47,7 @@ script: |
   wget "${GHC_SOURCE}/${GHC_VER}/${GHC_TAR}"
   wget "${GHC_SOURCE}/${GHC_VER}/SHA256SUMS"
   CHECK=$(sha256sum -c SHA256SUMS 2>&1 | grep "${GHC_TAR}: ")
-  if [ "${CHECK}" != "${GHC_TAR}: OK" ]; then
-    echo
-    echo -e "\033[1mChecksum of\033[m ${GHC_TAR} \033[1mfailed!\033[m"
-    exit 1
-  else
-    echo -e "\033[1mChecksum of\033[m ${GHC_TAR} \033[1mOK.\033[m"
-  fi
+  if [ "${CHECK}" != "${GHC_TAR}: OK" ]; then echo -e "\033[1mChecksum of\033[m ${GHC_TAR} \033[1mfailed!\033[m" ; exit 1 ; else echo -e "\033[1mChecksum of\033[m ${GHC_TAR} \033[1mOK.\033[m" ; fi
   tar xf $GHC_TAR
   cd ghc-${GHC_VER}
   echo -e "\033[1mConfiguring GHC\033[m"
