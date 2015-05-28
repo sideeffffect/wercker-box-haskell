@@ -1,5 +1,5 @@
 name: haskell
-version: 2.0.3
+version: 2.0.4
 inherits: davedoesdev/ubuntu-14.10@0.0.2
 description: wercker box for the latest GHC and cabal-install
 type: main
@@ -28,10 +28,9 @@ script: |
   echo -e "\033[1m###  Setting up environment...  ##############################################\033[m"
   mkdir -p $TMPDIR
   
-  echo 'export PATH=$PREFIX/bin:$PATH' >> "$HOME/.profile"
-  echo 'export PATH=$HOME/.cabal/bin:$PATH' >> "$HOME/.profile"
-  export PATH=$PREFIX/bin:$PATH
-  export PATH=$HOME/.cabal/bin:$PATH
+  echo 'export PREFIX=$HOME/.local' >> $HOME/.profile
+  echo 'export PATH=$HOME/.cabal/bin:$PREFIX/bin:$PATH' >> "$HOME/.profile"
+  export PATH=$HOME/.cabal/bin:$PREFIX/bin:$PATH
   
   
   echo -e "\033[1m###  Installing system packages...  ##########################################\033[m"
